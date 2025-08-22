@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="stat">
+  <div class="card">
+    <div class="small">Total documents</div>
+    <div style="font-size:22px">{{ stats.total_docs }}</div>
+  </div>
+  <div class="card">
+    <div class="small">This month amount</div>
+    <div style="font-size:22px">{{ stats.this_month_amount|round(2) }} {{ stats.currency }}</div>
+  </div>
+  <div class="card">
+    <div class="small">Income docs</div>
+    <div style="font-size:22px">{{ stats.income_count }}</div>
+  </div>
+  <div class="card">
+    <div class="small">Expense docs</div>
+    <div style="font-size:22px">{{ stats.expense_count }}</div>
+  </div>
+</div>
+
+<h2 style="margin-top:18px">Recent documents</h2>
+<table class="table">
+  <thead>
+    <tr><th>Date</th><th>Name</th><th>File</th><th>Type</th><th>Amount</th><th>Currency</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    {% for d in docs %}
+    <tr>
+      <td>{{ d.date }}</td>
+      <td>{{ d.name }}</td>
+      <td>{{ d.file }}</td>
+      <td>{{ d.type }}</td>
+      <td>{{ "%.2f"|format(d.amount) }}</td>
+      <td>{{ d.currency }}</td>
+      <td>{{ d.status or "-" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

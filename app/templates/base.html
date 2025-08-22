@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or "Gocount" }}</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div><strong>gocount.ai</strong></div>
+      {% if user %}
+      <div>
+        <span class="badge">{{ user.email }} ({{ user.org.name }})</span>
+        &nbsp; <a href="/logout">Logout</a>
+      </div>
+      {% endif %}
+    </nav>
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
